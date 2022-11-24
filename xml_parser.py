@@ -2,6 +2,12 @@ import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup as bs
 
 def parseXML(xml_object):
+    """
+    Parses the incomming xml_object and extracts all desired data
+    Output is a dictionary with keys matching the places ('shortTitle' tag in xml) of the weather data
+    Each key contains another dictionary with the weather data of the place
+    (temperature, wind_speed, humidity)
+    """
     data = xml_object.decode('utf-8')
     bs_content = bs(data, features="xml")
     places = bs_content.find_all('metData')
